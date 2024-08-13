@@ -1,6 +1,6 @@
 # Setup a Static Website Using Nginx in aws cloud
 
-We will be building as well documenting the following:
+We will be building as well as documenting the following:
 
 - **Building with Nginx**
 - **Connecting with Route53**
@@ -67,3 +67,18 @@ We will be building as well documenting the following:
 - [x] _Task 8_: Using DNS verify the website setup.
 - [x] _Task 9_: Install certbot and Request For an SSL/TLS Certificate.
 - [x] _Task 10_: Validate the website SSL using the OpenSSL utility.
+
+## Documentation
+
+### Create An Ubuntu Server
+
+- Locate and click on EC2 within the AWS management console.
+- Click on Launch Instance
+- Name your instance and select the Ubuntu AMI.
+- Click the Create new key pair button to generate a key pair for secure connection to your instance.
+- Enter a Key pair name and click on Create key pair.
+- Enable SSH, HTTP, and HTTPS access(under network settings), then proceed to click Launch instance.
+- Click on View all instances.
+- Click on the created instance.
+- Click on the Connect button on your summary page
+-
