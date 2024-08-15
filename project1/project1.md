@@ -81,4 +81,42 @@ We will be building as well as documenting the following:
 - Click on View all instances.
 - Click on the created instance.
 - Click on the Connect button on your summary page
--
+- Copy the command provided under the `SSH client` tab
+- Open terminal in location with download pem key and paste && run your command
+- Select `Elastic IPs` under the Network & Security menu located left of your screen (might need to expand to see all options)
+- Click Allocate Elastic IP A
+  address button
+- Leave default settings and click Allocate button at bottom of page
+- Click Associate this Elastic IP Address to link this ip to your ec2 instance
+- Select your instance name from the instance dropdown and click Associate button
+- Go back to your ec2 instance and click connect and copy and paste the ssh code to your terminal which should opened where you pem key is
+- Update,Upgrade and Install nginx `sudo apt update` , `sudo apt upgrade` , `sudo apt install nginx`
+- Start your nginx server `sudo systemctl start nginx`
+- Enable your nginx server `sudo systemctl enable nginx` and confirm it's running `sudo systemctl status nginx`
+- Copy your IPv4 address from your ec2 instance dashboard and paste the address into your web browser (you should see the default nginx startUp page)
+- Download website template from a site like https://www.tooplate.com/free-templates
+- When you have selected your preferred site, right click and select inspect to open the dev console,select the network tab,click download on the page and when the site zip file gets downloaded and seen in the console of your network tab,right click and copy the url as shown below
+  ![A picture showing how to grab a link to a sites download zip files](image.png)
+- The curl command is a utility for making HTTP requests via the command line. Here, it's utilized to retrieve a file from a specified URL. The -o flag designates the output file or destination. In this instance, it signifies that the downloaded file, named "2137_barista_cafe.zip", should be stored in the "/var/www/html/" directory. The URL https://www.tooplate.com/zip-templates/2137_barista_cafe.zip is the source for downloading the file. Make sure to replace it with the URL of your own website template. Curl will retrieve the content located at this URL.
+- Install your unzip tool `sudo apt install unzip` and run it within the location where your zipped site content is located using `sudo unzip <website template name>`
+- Update your nginx configuration `sudo nano /etc/nginx/sites-available/default` by updating the root to point to the directory where your downloaded html files are stored
+  ![picture showing how to update nginx root direcory](image-1.png)
+
+  ### Create An A Record
+
+  To make your website accessible via your domain name rather than the IP address, you'll need to set up a DNS record. I did this by buying my domain from a domain registrar eg Namecheap,GoDaddy and then moved hosting to AWS Route 53, where I set up an A record.
+
+  - Find Route53 service in your aws console and click get started
+  - Select create trusted zones
+  - Enter your Domain name①, choose Public hosted zone② and then click on Create hosted zone③.
+  - Select the created hosted zone① and copy the assigned Values②
+  - Go back to your domain registrar,click manage beside the domain you plan on using and select Custom DNS within the NAMESERVERS section
+  - Paste the values you copied from Route 53 into the appropriate fields, then click the checkmark symbol to save the changes.
+  - Head back to your AWS console and click on Create record.
+  - Paste your Elastic IP address in the values textbox and then click on Create records
+  - Your A record has been successfully created
+  - Click on create record again, to create the record for your sub domain.
+  - Input the Record name(www➀), paste your IP address➁, and then click on Create records➂
+  - Open your terminal and run sudo nano /etc/nginx/sites-available/default to edit your settings. Enter your domain and subdomain names, then save the changes.
+  - Restart your nginx server by running the sudo systemctl restart nginx command
+  - Go to your domain name in a web browser to verify that your website is accessible
