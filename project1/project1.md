@@ -120,3 +120,10 @@ We will be building as well as documenting the following:
   - Open your terminal and run sudo nano /etc/nginx/sites-available/default to edit your settings. Enter your domain and subdomain names, then save the changes.
   - Restart your nginx server by running the sudo systemctl restart nginx command
   - Go to your domain name in a web browser to verify that your website is accessible
+
+  ### Install certbot and Request For an SSL/TLS Certificate
+
+  - Install certbot by executing the following commands: `sudo apt update` , `sudo apt install certbot python3-certbot-nginx`
+  - Execute the `sudo certbot --nginx` command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS.
+    ![cerbot installation](image-2.png)
+  - Verify the website's SSL using the OpenSSL utility with the command: `openssl s_client -connect edemyoung.online:443`
