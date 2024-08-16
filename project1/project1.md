@@ -100,7 +100,7 @@ We will be building as well as documenting the following:
 - The curl command is a utility for making HTTP requests via the command line. Here, it's utilized to retrieve a file from a specified URL. The -o flag designates the output file or destination. In this instance, it signifies that the downloaded file, named "2137_barista_cafe.zip", should be stored in the "/var/www/html/" directory. The URL https://www.tooplate.com/zip-templates/2137_barista_cafe.zip is the source for downloading the file. Make sure to replace it with the URL of your own website template. Curl will retrieve the content located at this URL.
 - Install your unzip tool `sudo apt install unzip` and run it within the location where your zipped site content is located using `sudo unzip <website template name>`
 - Update your nginx configuration `sudo nano /etc/nginx/sites-available/default` by updating the root to point to the directory where your downloaded html files are stored
-  ![picture showing how to update nginx root direcory]![alt text](image-5.png)
+  ![picture showing how to update nginx root direcory]![alt text](image-7.png)
 
   ### Create An A Record
 
