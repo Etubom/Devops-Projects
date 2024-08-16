@@ -96,11 +96,11 @@ We will be building as well as documenting the following:
 - Copy your IPv4 address from your ec2 instance dashboard and paste the address into your web browser (you should see the default nginx startUp page)
 - Download website template from a site like https://www.tooplate.com/free-templates
 - When you have selected your preferred site, right click and select inspect to open the dev console,select the network tab,click download on the page and when the site zip file gets downloaded and seen in the console of your network tab,right click and copy the url as shown below
-  ![A picture showing how to grab a link to a sites download zip files](image.png)
+  ![A picture showing how to grab a link to a sites download zip files](image-6.png)
 - The curl command is a utility for making HTTP requests via the command line. Here, it's utilized to retrieve a file from a specified URL. The -o flag designates the output file or destination. In this instance, it signifies that the downloaded file, named "2137_barista_cafe.zip", should be stored in the "/var/www/html/" directory. The URL https://www.tooplate.com/zip-templates/2137_barista_cafe.zip is the source for downloading the file. Make sure to replace it with the URL of your own website template. Curl will retrieve the content located at this URL.
 - Install your unzip tool `sudo apt install unzip` and run it within the location where your zipped site content is located using `sudo unzip <website template name>`
 - Update your nginx configuration `sudo nano /etc/nginx/sites-available/default` by updating the root to point to the directory where your downloaded html files are stored
-  ![picture showing how to update nginx root direcory](image-1.png)
+  ![picture showing how to update nginx root direcory]![alt text](image-5.png)
 
   ### Create An A Record
 
