@@ -1,4 +1,6 @@
 # Setup a Static Website Using Nginx in aws cloud
+![image](https://github.com/user-attachments/assets/20cca6c8-117c-4f57-b014-432a05d9efd8)
+
 
 We will be building as well as documenting the following:
 
