@@ -127,3 +127,5 @@ We will be building as well as documenting the following:
   - Execute the `sudo certbot --nginx` command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS.
     ![cerbot installation](image-2.png)
   - Verify the website's SSL using the OpenSSL utility with the command: `openssl s_client -connect edemyoung.online:443`
+
+  ![picture of site running](image-8.png)
