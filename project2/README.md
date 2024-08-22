@@ -187,3 +187,19 @@ To make your website accessible via your domain name rather than the IP address,
 
 - Go to your domain name in a web browser to verify that your website is accessible.
   ![individual.edemyoung.online site](image-13.png)
+  ![mason.edemyoung.online site](image-14.png)
+
+## Install certbot and Request For an SSL/TLS Certificate
+
+- Install certbot by executing the following commands: `sudo apt update` `sudo apt install python3-certbot-nginx` `sudo certbot --nginx`
+
+- Execute the `sudo certbot --nginx` command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS.
+
+![certbot configuration](image-15.png)
+
+- Verify the website's SSL using the OpenSSL utility with the command: `openssl s_client -connect individual.edemyoung.online:443`
+
+- Visit both domains to see that they are https secure.
+
+  ![mason.edemyoung.online https](image-19.png)
+  ![individual.edemyoung.online](image-18.png)
