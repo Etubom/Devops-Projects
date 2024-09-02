@@ -79,25 +79,25 @@ This is a reverse proxy load balancer configuration in Nginx, where Nginx acts a
 </u>
 
 - Spin up your 3 ubuntu servers. Ensure you clearly name them so you don't make mistakes.
-  _Picture 1 goes here_
+  ![instantiate 3 ec2 servers](./img/1.png)
 
   ## Install Nginx and Setup Your Website
 
   > [!NOTE]
   > Install Nginx on both web server terminals. These are the terminals you're using to manage the servers hosting the two distinct website contents that the load balancer will distribute traffic to.
 
-  _Picture 2 goes here_
+  ![install nginx](./img/2.png)
 
 - Download your website template from your preferred website by navigating to the website, locating the template you want.
 - Right click and select Inspect from the drop down menu.
 - On the network tab, click the download button and copy the download url
-  _Picture 3 goes here_
+  ![copy html template download url](./img/3.png)
 
 - Visit your instances IP address in a web browser to view the default Nginx startup page.
 
 - Execute sudo apt install unzip to install the unzip tool and run the following command to download and unzip your website files `sudo curl -o /var/www/html/2135_mini_finance.zip https://www.tooplate.com/zip-templates/2135_mini_finance.zip && sudo unzip -d /var/www/html/ /var/www/html/2135_mini_finance.zip && sudo rm -f /var/www/html/2135_mini_finance.zip.`
 
-_Picture 4 goes here_
+![unzip downloaded site to nginx html folder](./img/4.png)
 
 - To set up your website's configuration, start by creating a new file in the Nginx sites-available directory. Use the following command to open a blank file in a text editor: `sudo nano /etc/nginx/sites-available/flight`.
 
@@ -119,19 +119,19 @@ server {
 
 - Edit the root directive within your server block to point to the directory where your downloaded website content is stored.
 
-_Picture 5 goes here_
+![edit nginx root directory](./img/5.png)
 
 - Create a symbolic link for both websites by running the following command. `sudo ln -s /etc/nginx/sites-available/flight /etc/nginx/sites-enabled/`
 
-_Picture 6 goes here_
+![create symbolic link](./img/6.png)
 
 - Run the `sudo nginx -t` command to check the syntax of the Nginx configuration file, and when successful run the `sudo systemctl restart nginx` command
 
-_Picture 7 goes here_
+![check nginx config file syntxa](./img/7.png)
 
 - Repeat the process for the second website.
 
-_Picture 8 goes here_
+![repeat process for second site](./img/8.png)
 
 - To set up your website's configuration, start by creating a new file in the Nginx sites-available directory. Use the following command to open a blank file in a text editor: sudo `nano /etc/nginx/sites-available/shelf`.
 
@@ -153,26 +153,26 @@ server {
 
 Edit the `root` directive within your server block to point to the directory where your downloaded website content is stored
 
-_Picture 9 goes here_
+![edit root for second site](./img/9.png)
 
 - Create a symbolic link for both websites by running the following command. `sudo ln -s /etc/nginx/sites-available/shelf /etc/nginx/sites-enabled/`
 
-_Picture 10 goes here_
+![create symbolic link](./img/10.png)
 
 - Run the `sudo nginx -t` command to check the syntax of the Nginx configuration file, and when successful run the `sudo systemctl restart nginx` command.
 
-_Picture 11 goes here_
+![check second site syntax](./img/11.png)
 
 > [!NOTE]
 > On your first server, run `sudo rm /etc/nginx/sites-enabled/default`, and on your second server, run `sudo rm /etc/nginx/sites-enabled/default`. This will delete the default site-enabled folders and enable Nginx to serve content from your specified website directories. If you don't delete these default folders, you'll continue to see the default Nginx page.
 
-_Picture 12 goes here_
+![delete default site enabled folders](./img/12.png)
 
 - Run the `sudo systemctl restart nginx` command to restart your server
 - Check both IP addresses to confirm your website is up and running
 
-_Picture 13 goes here_
-_Picture 14 goes here_
+![check first site is visible on public ip address](./img/13.png)
+![check second site is visible on public ip address](./img/14.png)
 
 ## Configure your Load balancer
 
@@ -200,14 +200,14 @@ server {
 
 ```
 
-_Picture 15 goes here_
+![edit nginx config file in load balancer server](./img/15.png)
 
 > [!NOTE]
 > Replace the necessary placeholders as shown in the picture above. Substitute <server 1> and <server 2> with the actual private IP addresses of your servers. Also, replace <your domain> www.<your domain> with your root domain and subdomain name, and update proxy_pass and the other relevant fields accordingly.
 
 - Run `sudo nginx -t` to check for syntax error
 
-_Picture 16 goes here_
+![check for syntax errs](./img/16.png)
 
 - Apply the changes by restarting Nginx: `sudo systemctl restart nginx`
 
@@ -223,14 +223,30 @@ _Picture 16 goes here_
 
 - Paste your IP address➀, input the Record name(www➁) and then click on Create records➂.
 
-_Picture 17 goes here_
-
+![create A records for domain and sub domain](./img/17.png)
 -Go to the terminal you used in setting your first website and run `sudo nano /etc/nginx/sites-available/flight` to edit your settings. Enter the name of your domain and then save your settings
 
-_Picture 18 goes here_
+![enter domain name in first server](./img/18.png)
 
 - Go to the terminal you used in setting your second website and run `sudo nano /etc/nginx/sites-available/shelf` to edit your settings. Enter the name of your domain and then save your settings
-  _Picture 19 goes here_
-
+  ![repeat above in second server](./img/19.png)
 - Restart your nginx server by running the `sudo systemctl restart nginx` command.
 - Go to your domain name in a web browser to verify that your website is accessible.
+  ![check first site is available now via domain name](./img/20.png)
+  ![check second site is available now via domain name](./img/21.png)
+  ![video toggling both sites](./img/22-LB.mov)
+
+## Install certbot and Request For an SSL/TLS Certificate
+
+- Install certbot by executing the following commands: `sudo apt update` `sudo apt install python3-certbot-nginx`
+
+- Execute the `sudo certbot --nginx` command to request your certificate. Follow the instructions provided by certbot and select the domain name for which you would like to activate HTTPS.
+  ![setup certbot](./img/23.png)
+- Access your website to verify that Certbot has successfully enabled HTTPS.
+
+![first site shelfs with https activated](./img/24.png)
+![second site flights with https activated](./img/25.png)
+
+- It is recommended to renew your LetsEncrypt certificate at least every 60 days or more frequently. You can test renewal command in dry-run mode: `sudo certbot renew --dry-run`
+
+![dry run certbot renewal](./img/26.png)
