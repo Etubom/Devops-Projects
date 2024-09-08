@@ -335,8 +335,8 @@ Now our WordPress database has been setup we can no go ahead and setup WordPress
 <table>
 
 <tr>
-<td width="40%">S/N</td>
-<td width="60%">Project Tasks</td>
+<td width="40%">Form Field Name</td>
+<td width="60%">Tasks</td>
 </tr>
 <tr>
 <td>Site Title</td>
