@@ -125,14 +125,14 @@ We are going to spin up an ec2 instance and attach the following IAM roles to it
 - AmazonVPCFullAccess
 - AmazonEC2FullAccess
 
-_Pic 1 goes here_
-_Pic 2 goes here_
-_Pic 3 goes here_
-_Pic 4 goes here_
-_Pic 5 goes here_
-_Pic 6 goes here_
-_Pic 7 goes here_
-_Pic 8 goes here_
+[](./img/1.png)
+[](./img/2.png)
+[](./img/3.png)
+[](./img/4.png)
+[](./img/5.png)
+[](./img/6.png)
+[](./img/7.png)
+[](./img/8.png)
 
 [Create](../project1/README.md) an Ubuntu 22.04 ec2 instance
 
@@ -141,9 +141,9 @@ _Pic 8 goes here_
 <strong>Attach role to newly created instance</strong>
 </u>
 
-_pic 9 goes here_
-_Pic 10 goes here_
-_Pic 11 goes here_
+[](./img/9.png)
+[](./img/10.png)
+[](./img/11.png)
 
 <strong>Do the following :</strong>
 
@@ -387,7 +387,7 @@ Lets create the VPC and related resources using terraform apply.
 
 This is where you tell Terraform to actually create the resources on AWS. It will use the values from the vpc.tfvars file and make the necessary changes. You’ll see a summary of the changes before proceeding, and you have to confirm (by typing yes) to allow Terraform to create the VPC, subnets, internet gateways, etc.
 
-_Pic 12 goes here_
+[](./img/12.png)
 
 <u>
    <strong>
@@ -401,7 +401,7 @@ Click on the created VPC and scroll down to view the Resource Map.
 
 You should see 15 subnets , 6 route tables, internet gateway and NAT gateway as shown below.
 
-_Pic 13 goes here_
+[](./img/13.png)
 
 <u>
    <strong>
@@ -413,6 +413,6 @@ _Pic 13 goes here_
 
 `terraform destroy  -var-file=../../vars/dev/vpc.tfvars`
 
-_Pic 14 goes here_
+[](./img/14.png)
 
 - You can go ahead and terminate your instance you created also
